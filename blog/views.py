@@ -4,7 +4,9 @@ from django.shortcuts import render
 
 
 
-#def index(request):
+def index(request):
+    return render(request, 'index.html')
+
 #def create(request):
 #def update(request, blog_id):
 #def delete(request, blog_id):

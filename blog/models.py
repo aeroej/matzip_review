@@ -2,10 +2,13 @@ from django.db import models
 
 # Create your models here.
 
-
+# Portfolio 필드는 가게명/주소/사진
 #class Portfolio(models.Model):
 
+# Comment 필드는 작성자/내용/평점
 class Comment(models.Model):
+
+
     grade_total= (
     (5, '5점'),
 
@@ -17,7 +20,7 @@ class Comment(models.Model):
 
     (1, '1점'),
     )
-    grade = models.FloatField(
+    평점 = models.FloatField(
         choices=grade_total,
         default= 5
     )

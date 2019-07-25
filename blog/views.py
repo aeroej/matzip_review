@@ -13,7 +13,7 @@ from django.db.models import Avg
 def detail(request, blog_id):
     blog_detail = get_object_or_404(Portfolio, pk=blog_id)
 
-    #평균별점 구하는 부분(참고 : 템플릿상에서 {{average}}값이 평균별점값)
+    #평균평점 구하는 부분(참고 : 템플릿상에서 {{average}}값이 평균평점값)
     a = Comment.objects.filter(post=blog_id).aggregate(Avg('grade'))
     b = a['grade__avg']
     if b is None:

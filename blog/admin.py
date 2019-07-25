@@ -1,7 +1,7 @@
-#from django.contrib import admin
-#from .models import Media,Comment
+from django.contrib import admin
+from .models import Portfolio,Comment
 
 # Register your models here.
 
-#admin.site.register(Media)
-#admin.site.register(Comment)
+admin.site.register(Portfolio)
+admin.site.register(Comment)

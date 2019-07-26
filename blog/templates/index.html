@@ -25,10 +25,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">맛집 목록</a>
+                        <a class="nav-link" href="{% url 'index' %}">맛집 목록</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">맛집 등록</a>
+                        <a class="nav-link" href="{% url 'create' %}">맛집 등록</a>
                     </li>
                     <!--로그인,회원가입 및 로그아웃-->
                     <!--로그인했을때만 로그아웃과 맛집등록 버튼 뜨도록? 이건 개발팀이랑 상의 후에-->
@@ -44,9 +44,9 @@
                 <h3>맛집 상호명</h3>
                 <small>맛집 주소</small>
                 <p>맛집에 대한 설명</p>
-                    <a href="">자세히보기</a> &emsp;
-                    <a href="">수정하기</a> &emsp;
-                    <a href="">삭제하기</a> &emsp; <!--4칸띄움--> 
+                    <a href="{% url 'detail' blod_id %}">자세히보기</a> &emsp;
+                    <a href="{% url 'update' blod_id %}">수정하기</a> &emsp;
+                    <a href="{% url 'delete' blog_id %}">삭제하기</a> &emsp; <!--4칸띄움--> 
             </div>
         </div>
     </body>

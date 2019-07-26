@@ -14,8 +14,8 @@ def detail(request, blog_id):
     blog_detail = get_object_or_404(Portfolio, pk=blog_id)
 
     #평균평점 구하는 부분(참고 : 템플릿상에서 {{average}}값이 평균평점값)
-    a = Comment.objects.filter(post=blog_id).aggregate(Avg('평점'))
-    b = a['grade__avg']
+    a = Comment.objects.filter(포스트=blog_id).aggregate(Avg('평점'))
+    b = a['평점__avg']
     if b is None:
         average = 0
     else:

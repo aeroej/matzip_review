@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+    <head>
+        <title>맛집 리뷰</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            .matzip_list {
+                margin: 1rem 7rem;
+            }
+            .matzip_list .matzip {
+                margin: 0.5rem;
+                padding:1rem;
+                border-radius: 0.5em;
+                border: 1.5px solid rgb(213, 213, 213);
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- nav bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">맛집</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">맛집 목록</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">맛집 등록</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- 맛집목록-->
+        <div class="matzip_list">
+            <!--탬플릿 태그로 for문 돌려서 matzip클래스 반복-->
+            <div class="matzip">
+                <!--views에서 가져온 변수명으로 탬플릿 작성-->
+                <h3>맛집 상호명</h3>
+                <small>맛집 주소</small>
+                <p>맛집에 대한 설명</p>
+                    <a href="">자세히보기</a> &emsp;
+                    <a href="">수정하기</a> &emsp;
+                    <a href="">삭제하기</a> &emsp; <!--4칸띄움--> 
+            </div>
+        </div>
+
+        {% comment %} 가입 {% endcomment %}
+        <h1>Sign up!</h1>
+
+        <form method="POST" action="{% url 'signup'%}">
+
+        {% csrf_token %}
+            Username:
+            <br>
+            <input name="username" type="text" value="">
+            <br>
+            <input name="password1" type="password" value="">
+            <br>
+            Confirm Password
+            <br>
+            <input name="password2" type="password" value="">
+            <br>
+            <br>
+            <input clasee="btn btn-primary" type="submit" value="Sign Up!">
+        </form>
+
+
+    </body>
+</html>

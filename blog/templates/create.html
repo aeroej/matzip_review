@@ -37,15 +37,15 @@
                     <!-- 멋사 강의 자료 참고 -->
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">환영합니다. {{ user.username }} 님!</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{% url 'create' %}">맛집 등록</a>
-                                <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
-                                <form id="logout" method="POST" action="{% url 'logout' %}">
-                                    {% csrf_token %} <input type="hidden" />
-                                </form>
-                            </div>
-                        </li>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">환영합니다. {{ user.username }} 님!</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'create' %}">맛집 등록</a>
+                            <a class="dropdown-item" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                            <form id="logout" method="POST" action="{% url 'logout' %}">
+                                {% csrf_token %} <input type="hidden" />
+                            </form>
+                        </div>
+                    </li>
                     {% else %}
                     <li class="nav-item">
                             <a class="nav-link" href="{% url 'login' %}">로그인</a>
@@ -61,7 +61,13 @@
         <!-- 맛집목록-->
         <div class="matzip_list">
             <div class="matzip">
-                <!--forms활용해서 화면구성할것-->
+                <form method='POST'>
+                    {% csrf_token %}
+                    <table>
+                        {{ form.as_table }} <!--form은 view에서 설정한 딕셔너리 키값-->
+                    </table>
+                    <input class="btn" type="submit" value="제출하기">
+                </form>
             </div>
         </div>
     </body>

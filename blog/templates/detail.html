@@ -12,6 +12,12 @@
                 border-radius: 0.5em;
                 border: 1.5px solid rgb(213, 213, 213);
             }
+            .matzip .matzip_review {
+                margin: 0.5rem;
+                padding: 0.7rem;
+                border-radius: 0.3em;
+                border: 1px solid rgb(213, 213, 213);
+            }
         </style>
     </head>
 
@@ -64,13 +70,21 @@
         <div class="matzip_list">
             <div class="matzip">
                 <!--views에서 가져온 변수명으로 탬플릿 작성 (자세히보기 페이지이므로 한개만)-->
-                <h3>맛집 상호명</h3>
-                <small>맛집 주소</small>
-                <p>맛집에 대한 설명</p>
-                <a href="{% url 'comment' post_id %}">리뷰 작성</a> &emsp;
-                    <div class="matzip_review">
-                        <!--작성자, 리뷰내용, 별점-->
-                    </div>
+                <h3>{{ 변수.가게명 }}</h3>
+                <small>{{ 변수.주소 }}</small>
+                <p>{{ 변수.사진 }}</p>
+                    <!--여기서 변수가 밑에 코멘트 포스트.id의 포스트와 같아야하나? 작업팀이랑 맞춰보고 확인-->
+                <a href="{% url 'comment' post.id %}">리뷰 작성</a> &emsp;
+                <div class="matzip_review">
+                    <!--작성자, 리뷰내용, 평점 / 탬플릿 태그로 for문 돌리기 -->
+                    {% for comment in post.comment.all %}
+                        {{ comment.작성자 }}
+                        {{ comment.평점 }} 
+                        {{ commnet.내용 }}
+                        <a href="{% url 'co_update' comment.id %}">리뷰 수정</a> &emsp;
+                        <a href="{% url 'co_delete' comment.id %}">리뷰 삭제</a>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </body>

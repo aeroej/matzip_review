@@ -5,7 +5,7 @@ from django.db import models
 # Portfolio 필드는 가게명/주소/사진
 #class Portfolio(models.Model):
 
-# Comment 필드는 포스트(foreignkey부분)/작성자/내용/평점
+# Comment 필드는 post(foreignkey부분)/작성자/내용/평점
 class Comment(models.Model):
 
 

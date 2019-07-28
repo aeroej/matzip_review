@@ -9,7 +9,7 @@ class Portfolio(models.Model):
     사진 = models.ImageField(upload_to='images/')
 
     def __str__(self):
-        return self.title
+        return self.가게명
 
 # Comment 필드는 post(foreignkey부분)/작성자/내용/평점
 class Comment(models.Model):

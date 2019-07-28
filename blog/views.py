@@ -11,6 +11,7 @@ def index(request):
     blogs = Portfolio.objects.all()  
     return render(request, 'index.html', {'blogs' : blogs})
 
+@login_required
 def create(request):
     if request.method == 'POST' : 
         form = NewBlog(request.POST)
@@ -23,6 +24,7 @@ def create(request):
         form = NewBlog()
         return render(request, 'create.html', {'form' : form})
 
+@login_required
 def update(request, blog_id):
     blog = get_object_or_404(Blog, blog_id = blog_id ) # 수정할 블로그 객체 가져오기
     form = NewBlog(request.POST, instance = blog) # 가져온 블로그 객체에 맞는 입력공간을 마련하기 : create 이용
@@ -32,6 +34,7 @@ def update(request, blog_id):
     return render(request, 'create.html', {'form' : form})
 
 # 첫화면에서 삭제 버튼
+@login_required
 def delete(request, blog_id):
     blog = get_object_or_404(Blog, blog_id = blog_id ) 
     blog.delete()

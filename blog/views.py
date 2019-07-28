@@ -1,15 +1,40 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Portfolio, Comment
+from .forms import NewBlog # 모듈 추가
 from django.db.models import Avg
 
 # Create your views here.
+# index, create, update, delete 참고 : 멋사 강의자료
+def index(request):
+    blogs = Portfolio.objects.all()  
+    return render(request, 'index.html', {'blogs' : blogs})
 
+def create(request):
+    if request.method == 'POST' : 
+        form = NewBlog(request.POST)
+        if form.is_valid():
+            post = form.save(commit = False) 
+            post.save()
+            return redirect('index')
 
+    elif request.method == 'GET' :
+        form = NewBlog()
+        return render(request, 'create.html', {'form' : form})
 
-#def index(request):
-#def create(request):
-#def update(request, blog_id):
-#def delete(request, blog_id):
+def update(request, blog_id):
+    blog = get_object_or_404(Blog, blog_id = blog_id ) # 수정할 블로그 객체 가져오기
+    form = NewBlog(request.POST, instance = blog) # 가져온 블로그 객체에 맞는 입력공간을 마련하기 : create 이용
+    if form.is_valid():
+        form.save()
+        return redirect('index')
+    return render(request, 'create.html', {'form' : form})
+
+# 첫화면에서 삭제 버튼
+def delete(request, blog_id):
+    blog = get_object_or_404(Blog, blog_id = blog_id ) 
+    blog.delete()
+    return redirect('index')
+
 def detail(request, blog_id):
     blog_detail = get_object_or_404(Portfolio, pk=blog_id)
 

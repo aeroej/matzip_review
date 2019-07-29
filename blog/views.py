@@ -14,7 +14,7 @@ def index(request):
 @login_required
 def create(request):
     if request.method == 'POST' : 
-        form = NewBlog(request.POST)
+        form = NewBlog(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit = False) 
             post.save()

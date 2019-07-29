@@ -2,6 +2,9 @@
     <head>
         <title>맛집 리뷰</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <style>
             .matzip_list {
                 margin: 1rem 7rem;
@@ -28,13 +31,8 @@
                         <a class="nav-link" href="{% url 'index' %}">맛집 목록</a>
                     </li>
                     
-                    <!-- 기존 맛집 등록 및 로그아웃 버튼 / 개발 팀이랑 확인 후 서버 돌아가면 이 주석 삭제
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'create' %}">맛집 등록</a>
-                    </li>
-                    <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">로그아웃</a>
-                    </li>   -->
+                    
+                   
 
                     <!-- 멋사 강의 자료 참고 -->
                     {% if user.is_authenticated %}
@@ -48,6 +46,13 @@
                                 </form>
                             </div>
                         </li>
+                    <!--<li class="nav-item">
+                        <a class="nav-link" href="{% url 'create' %}">맛집 등록</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">로그아웃</a>
+                    </li>-->
+                    
                     {% else %}
                     <li class="nav-item">
                             <a class="nav-link" href="{% url 'login' %}">로그인</a>

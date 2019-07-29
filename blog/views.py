@@ -69,9 +69,9 @@ def comment(request,post_id):
         form = CommentForm()
         return render(request, 'comment.html', {'form':form})
 
+
 def co_update(request, post_id):
     pos = get_object_or_404(Comment, pk = post_id)
-
     if request.method =="POST":
         form = CommentForm(request.POST, instance=pos)
         if form.is_valid():

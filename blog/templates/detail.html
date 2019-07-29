@@ -77,22 +77,27 @@
                 <h3>{{ blog.가게명 }}</h3>
                 <small>{{ blog.주소 }}</small>
                 <p><img src="{{ blog.사진.url }}"></p>
+                <p>평균평점 : {{average}}</p>
                     <!--여기서 변수가 밑에 코멘트 포스트.id의 포스트와 같아야하나? 작업팀이랑 맞춰보고 확인-->
-                <a href="{% url 'comment' post.id %}">리뷰 작성</a> &emsp;
+                <a href="{% url 'comment' blog.id %}">리뷰 작성</a> &emsp;
                     <!--작성자, 리뷰내용, 평점 / 탬플릿 태그로 for문 돌리기 -->
-                {% for comment in post.comments.all %}
-                <div class="matzip_review">    
+                
+                <div class="matzip_review">
+                {% for comment in blog.com.all %}        
                     <div class="comment">
                         <div class="date">{{ comment.created_date }}</div>
-                        <strong>{{ comment.author }}</strong>
-                        <p>{{ comment.text|linebreaks }}</p>
+                        <strong>{{ comment.작성자 }}</strong>
+                        <p>{{ comment.내용|linebreaks }}</p>평점 : {{comment.평점}}
+
                     </div>
                     <a href="{% url 'co_update' comment.id %}">리뷰 수정</a> &emsp;
                     <a href="{% url 'co_delete' comment.id %}">리뷰 삭제</a>
+                    <hr>
                 {% empty %}
                     <p>아직 댓글이 없습니다. :(</p>
+                {% endfor %}    
                 </div>
-                {% endfor %}
+                
                 
                 
             </div>

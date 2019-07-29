@@ -63,7 +63,7 @@
 
             <div class="review_create">
                 <div class="review">
-                    <form method="POST" action="{% url 'comment' post.id %}">    <!--action값은 안넣어도 되나? 확인하기-->
+                    <form method="POST" enctype = "multipart/form-data">    <!--action값은 안넣어도 되나? 확인하기-->
                         {% csrf_token %}
                         <table>
                             {{ form.as_table }} <!--form은 view에서 설정한 딕셔너리 키값-->

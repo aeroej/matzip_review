@@ -15,7 +15,7 @@ class Portfolio(models.Model):
 # Comment 필드는 post(foreignkey부분)/작성자/내용/평점
 class Comment(models.Model):
 
-    post = models.ForeignKey('blog.Post', related_name='comments')
+    post = models.ForeignKey(Portfolio, on_delete=models.CASCADE, related_name='com', null=True)
     작성자 = models.CharField(max_length=200)
     내용 = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)

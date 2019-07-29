@@ -7,7 +7,7 @@ from django.utils import timezone
 class Portfolio(models.Model):
     가게명 = models.CharField(max_length=200)
     주소 = models.CharField(max_length=400)
-    사진 = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return self.가게명

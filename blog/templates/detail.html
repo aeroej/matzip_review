@@ -76,7 +76,7 @@
                 <!--views에서 가져온 변수명으로 탬플릿 작성 (자세히보기 페이지이므로 한개만)-->
                 <h3>{{ blog.가게명 }}</h3>
                 <small>{{ blog.주소 }}</small>
-                <p><img src="{{ blog.사진.url }}"></p>
+                <img src="{{ blog.사진.url }}">
                 <p>평균평점 : {{average}}</p>
                     <!--여기서 변수가 밑에 코멘트 포스트.id의 포스트와 같아야하나? 작업팀이랑 맞춰보고 확인-->
                 <a href="{% url 'comment' blog.id %}">리뷰 작성</a> &emsp;

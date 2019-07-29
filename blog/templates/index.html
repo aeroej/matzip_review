@@ -73,7 +73,8 @@
                 <!--views에서 가져온 변수명으로 탬플릿 작성-->
                 <h3>{{ blog.가게명 }}</h3>
                 <small>{{ blog.주소 }}</small>
-                <p><img src="{{ blog.사진.url }}"></p>
+                <br>
+                <p><img src="{{ blog.image.url }}" style="height: 300px;"></p>
                     <a href="{% url 'detail' blog.id %}">자세히보기</a> &emsp;
                     <a href="{% url 'update' blog.id %}">수정하기</a> &emsp;
                     <a href="{% url 'delete' blog.id %}">삭제하기</a> &emsp; <!--4칸띄움--> 

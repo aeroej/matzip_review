@@ -53,7 +53,7 @@ def detail(request, blog_id):
 
     return render(request, 'detail.html', {'blog': blog_detail,"average":average})
 
-
+@login_required
 def comment(request,post_id):
 
     pos = get_object_or_404(Portfolio, pk = post_id)
@@ -69,7 +69,7 @@ def comment(request,post_id):
         form = CommentForm()
         return render(request, 'comment.html', {'form':form})
 
-
+@login_required
 def co_update(request, post_id):
     pos = get_object_or_404(Comment, pk = post_id)
     if request.method =="POST":
@@ -82,7 +82,7 @@ def co_update(request, post_id):
     else:
         form = CommentForm()
         return render(request, 'create.html', {'form':form})
-
+@login_required
 def co_delete(request,post_id):
     comment = get_object_or_404(Comment, pk = post_id)
     comment.delete()

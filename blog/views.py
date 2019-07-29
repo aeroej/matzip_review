@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Portfolio, Comment
-from .forms import NewBlog # 모듈 추가
+from .forms import NewBlog, CommentForm # 모듈 추가
 from django.db.models import Avg
 from django.contrib.auth.decorators import login_required # 로그인 한 사용자만 글에 접근
 

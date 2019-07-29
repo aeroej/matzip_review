@@ -1,5 +1,5 @@
 from django import forms
-from .models import Portfolio,Comment
+from .models import Portfolio, Comment
 
 
 class NewBlog(forms.ModelForm):

@@ -63,15 +63,15 @@
         <!-- 맛집목록-->
         <div class="matzip_list">
             <!--탬플릿 태그로 for문 돌려서 matzip클래스 반복-->
-            {% for matzip in portfolios.all %}
+            {% for blog in portfolios.all %}
             <div class="matzip">
                 <!--views에서 가져온 변수명으로 탬플릿 작성-->
-                <h3>맛집 상호명{{ matzip.가게명 }}</h3>
-                <small>맛집 주소{{ matzip.주소 }}</small>
-                <p>맛집에 대한 설명{{ matzip.사진 }}</p>
-                    <a href="{% url 'detail' blod_id %}">자세히보기</a> &emsp;
-                    <a href="{% url 'update' blod_id %}">수정하기</a> &emsp;
-                    <a href="{% url 'delete' blog_id %}">삭제하기</a> &emsp; <!--4칸띄움--> 
+                <h3>{{ blog.가게명 }}</h3>
+                <small>{{ blog.주소 }}</small>
+                <p>{{ blog.사진 }}</p>
+                    <a href="{% url 'detail' blog.id %}">자세히보기</a> &emsp;
+                    <a href="{% url 'update' blog.id %}">수정하기</a> &emsp;
+                    <a href="{% url 'delete' blog.id %}">삭제하기</a> &emsp; <!--4칸띄움--> 
             </div>
             {% endfor %}
         </div> 

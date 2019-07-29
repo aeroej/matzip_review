@@ -54,7 +54,7 @@ def detail(request, blog_id):
     return render(request, 'detail.html', {'blog': blog_detail,"average":average})
 
 
-def add_comment_to_post(request, pk):
+def add_comment_to_posts(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = CommentForm(request.POST)
@@ -62,7 +62,7 @@ def add_comment_to_post(request, pk):
             comment = form.save(commit=False)
             comment.post = post
             comment.save()
-            return redirect('post_detail', pk=post.pk)
+            return redirect('detail', pk=post.pk)
     else:
         form = CommentForm()
-    return render(request, 'blog/add_comment_to_post.html', {'form': form})
+    return render(request, 'comment.html', {'form': form})

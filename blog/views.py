@@ -26,7 +26,7 @@ def create(request):
 
 @login_required
 def update(request, blog_id):
-    blog = get_object_or_404(Blog, blog_id = blog_id ) # 수정할 블로그 객체 가져오기
+    blog = get_object_or_404(Portfolio, pk = blog_id ) # 수정할 블로그 객체 가져오기
     form = NewBlog(request.POST, instance = blog) # 가져온 블로그 객체에 맞는 입력공간을 마련하기 : create 이용
     if form.is_valid():
         form.save()
@@ -36,7 +36,7 @@ def update(request, blog_id):
 # 첫화면에서 삭제 버튼
 @login_required
 def delete(request, blog_id):
-    blog = get_object_or_404(Blog, blog_id = blog_id ) 
+    blog = get_object_or_404(Portfolio, pk = blog_id ) 
     blog.delete()
     return redirect('index')
 

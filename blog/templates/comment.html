@@ -3,7 +3,13 @@
         <title>맛집 리뷰</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
-
+            .review_create {
+                margin: 1rem 7rem;
+            }
+            .review_create .review {
+                margin: 0.5rem;
+                padding:1rem;
+            }
         </style>
     </head>
 
@@ -52,6 +58,16 @@
             </div>
         </nav>
 
-        <!--comment(리뷰)작성화면 구성은 젤 나중에 구현-->
+            <div class="review_create">
+                <div class="review">
+                    <form method="POST" action="{% url 'comment' post.id %}">    <!--action값은 안넣어도 되나? 확인하기-->
+                        {% csrf_token %}
+                        <table>
+                            {{ form.as_table }} <!--form은 view에서 설정한 딕셔너리 키값-->
+                        </table>
+                        <input class="btn" type="submit" value="제출하기">
+                    </form>
+                </div>
+            </div>
     </body>
 </html>

@@ -77,12 +77,16 @@
                 <a href="{% url 'comment' post.id %}">리뷰 작성</a> &emsp;
                 <div class="matzip_review">
                     <!--작성자, 리뷰내용, 평점 / 탬플릿 태그로 for문 돌리기 -->
-                    {% for comment in post.comment.all %}
-                        {{ comment.작성자 }}
-                        {{ comment.평점 }} 
-                        {{ commnet.내용 }}
-                        <a href="{% url 'co_update' comment.id %}">리뷰 수정</a> &emsp;
-                        <a href="{% url 'co_delete' comment.id %}">리뷰 삭제</a>
+                    {% for comment in post.comments.all %}
+                    <div class="comment">
+                        <div class="date">{{ comment.created_date }}</div>
+                        <strong>{{ comment.author }}</strong>
+                        <p>{{ comment.text|linebreaks }}</p>
+                    </div>
+                    <a href="{% url 'co_update' comment.id %}">리뷰 수정</a> &emsp;
+                    <a href="{% url 'co_delete' comment.id %}">리뷰 삭제</a>
+                    {% empty %}
+                        <p>아직 댓글이 없습니다. :(</p>
                     {% endfor %}
                 </div>
             </div>

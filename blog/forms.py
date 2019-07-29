@@ -11,4 +11,4 @@ class CommentForm(forms.ModelForm):
     
     class Meta:
         model = Comment
-        fields = ('author', 'text','평점')
+        fields = ('작성자', '내용','평점')

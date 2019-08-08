@@ -8,8 +8,12 @@ from django.contrib.auth.decorators import login_required # 로그인 한 사용
 # Create your views here.
 # index, create, update, delete 참고 : 멋사 강의자료
 def index(request):
-    blogs = Portfolio.objects.all()  
+    blogs = Portfolio.objects.all()
+    
     return render(request, 'index.html', {'blogs' : blogs})
+
+def map(request):
+    return render(request, 'map.html')
 
 @login_required
 def create(request):
@@ -17,6 +21,7 @@ def create(request):
         form = NewBlog(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit = False) 
+            post.작성자 = request.user.get_username()
             post.save()
             return redirect('index')
 
@@ -53,7 +58,7 @@ def detail(request, blog_id):
 
     return render(request, 'detail.html', {'blog': blog_detail,"average":average})
 
-
+@login_required
 def comment(request,post_id):
 
     pos = get_object_or_404(Portfolio, pk = post_id)
@@ -62,6 +67,7 @@ def comment(request,post_id):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = pos #어디에 달건지 저장
+            comment.작성자 = request.user.get_username()
             comment.save()
             return redirect('index')
     
@@ -69,7 +75,7 @@ def comment(request,post_id):
         form = CommentForm()
         return render(request, 'comment.html', {'form':form})
 
-
+@login_required
 def co_update(request, post_id):
     pos = get_object_or_404(Comment, pk = post_id)
     if request.method =="POST":
@@ -82,7 +88,7 @@ def co_update(request, post_id):
     else:
         form = CommentForm()
         return render(request, 'create.html', {'form':form})
-
+@login_required
 def co_delete(request,post_id):
     comment = get_object_or_404(Comment, pk = post_id)
     comment.delete()

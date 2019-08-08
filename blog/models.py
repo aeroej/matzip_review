@@ -5,21 +5,39 @@ from django.utils import timezone
 
 # Portfolio 필드는 가게명/주소/사진
 class Portfolio(models.Model):
+    작성자 = models.CharField(max_length=200)
     가게명 = models.CharField(max_length=200)
     주소 = models.CharField(max_length=400)
     사진 = models.ImageField(upload_to='images/')
+    post_hit = models.PositiveIntegerField(default=0)
+    approved_comment = models.BooleanField(default=False)
 
     def __str__(self):
         return self.가게명
+    
+    def approve(self):
+        self.approved_comment = True
+        self.save()
+
+    @property
+    def update_counter(self):
+        self.post_hit = self.post_hit + 1
+        self.save()
+        
+    def approved_comments(self):
+        return self.comments.filter(approved_comment=True)
+    
+    
 
 # Comment 필드는 post(foreignkey부분)/작성자/내용/평점
 class Comment(models.Model):
 
     post = models.ForeignKey(Portfolio, on_delete=models.CASCADE, related_name='com', null=True)
-    작성자 = models.CharField(max_length=200)
     내용 = models.TextField()
+    작성자 = models.CharField(max_length=200)
     created_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)
+  
 
     grade_total= (
     (5, '5점'),
@@ -43,3 +61,5 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.내용
+
+   
